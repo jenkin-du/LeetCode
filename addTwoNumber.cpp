@@ -111,7 +111,7 @@ int main(){
 	}
 	printf("\n");
 	
-	//两数相加
+	
 	struct ListNode* h=addTwoNumbers(l1, l2);
 	while(h){
 		printf("%d",h->val);
