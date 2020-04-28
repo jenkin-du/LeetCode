@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch",
+            "name": "RUN",
             "type": "cppvsdbg",
             "request": "launch",
             "program": "cmd",
@@ -19,10 +19,11 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole":true ,//打开新窗口，方便输入数据
+            "preLaunchTask": "g++.exe build active file"
         },
         
         {
-            "name": "BUILD",
+            "name": "DEBUG",
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
@@ -41,6 +42,6 @@
                 }
             ],
             "preLaunchTask": "g++.exe build active file"
-        }
+        },
     ]
 }
