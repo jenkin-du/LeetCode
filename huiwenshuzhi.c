@@ -14,7 +14,7 @@ int main(){
 void isPalindrome(int x){
 
 	int nums[20]={0};
-	int i=0; 
+   	int i=0;
 	int num;
 	while(x>0){
 		num=x%10;

@@ -31,7 +31,7 @@ int main() {
 			while (m) {
 				Node* node = new Node();
 				node->value = arr[m - 1];
-				node->next = nullptr;
+				node->next = NULL;
 				
 				p->next = node;
 				p = p->next;
@@ -44,12 +44,12 @@ int main() {
 			
 			Node* node = new Node();
 			node->value = arr[m - 1];
-			node->next = nullptr;
+			node->next = NULL;
 			
-			while (p ->next != nullptr&&p->next->value > arr[m -1]) {
+			while (p ->next != NULL&&p->next->value > arr[m -1]) {
 				p = p->next;
 			}
-			if (p->next == nullptr&&p->value > arr[m - 1]) {
+			if (p->next == NULL&&p->value > arr[m - 1]) {
 				p->next = node;
 			}
 			else {
