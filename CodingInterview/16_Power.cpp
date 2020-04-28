@@ -4,6 +4,10 @@
 
 using namespace std;
 
+///
+///题目：求一个数值的幂，不使用库函数
+///
+
 //求幂
 double power(double base, int exponent);
 //求正数幂：常规求解法

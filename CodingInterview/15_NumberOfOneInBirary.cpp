@@ -1,7 +1,8 @@
 #include <iostream>
-
 using namespace std;
-
+///
+///题目：求给定数的二进制表示中有多少个1
+///
 int getNumOfOneInBinary1(int num);
 
 int getNumOfOneInBinary2(int num);
