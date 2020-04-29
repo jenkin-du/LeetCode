@@ -14,13 +14,12 @@ void printCharNumber(char *number, int length);
 
 int main()
 {
-    print1toNMaxRecursively(5);
+    print1toNMaxRecursively(4);
     return 0;
 }
 
 void print1toNMaxRecursively(int n)
 {
-
     if (n <= 0)
     {
         return;
@@ -44,7 +43,6 @@ void print1toNMaxRecursively(int n)
 //全排列打印的核心函数
 void print1toNMaxRecursiveCore(char *number, int length, int index)
 {
-
     if (index == length - 1)
     {
         printCharNumber(number, length);
@@ -61,7 +59,6 @@ void print1toNMaxRecursiveCore(char *number, int length, int index)
 //打印字符窜表示的数字
 void printCharNumber(char *number, int length)
 {
-
     bool isBeginPrint = false;
     for (int i = 0; i < length; i++)
     {
