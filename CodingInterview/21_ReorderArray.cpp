@@ -19,6 +19,7 @@ int main()
     int arr[] = {2, 4, 5, 3, 1, 5, 6, 9};
     reorder(arr, 8, isEven);
 
+
     for (int i = 0; i < 8; i++)
     {
         cout << arr[i] << ",";
