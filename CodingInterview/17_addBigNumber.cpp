@@ -44,7 +44,7 @@ char *addBigNumber(char *num1, char *num2, int maxLength)
     {
         if (!(num1[index1] >= '0' && num1[index1] <= '9'))
         {
-            cout << "invali input!" << endl;
+            cout << "invalid input!" << endl;
             return NULL;
         }
     }
@@ -63,7 +63,7 @@ char *addBigNumber(char *num1, char *num2, int maxLength)
     int max = index1 > index2 ? index1 : index2;
     if (maxLength < max)
     {
-        cout << "invali input!" << endl;
+        cout << "invalid input!" << endl;
         return NULL;
     }
 
