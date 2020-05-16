@@ -3,7 +3,7 @@
         {
             "name": "Win32",
             "includePath": [
-                "C:\\Software\\mingw\\lib\\gcc\\mingw32\\4.8.1\\include\\c++"
+                "D:\\Software\\mingw\\lib\\gcc\\mingw32\\4.8.1\\include\\c++"
             ],
             "defines": [
                 "_DEBUG",
@@ -11,7 +11,7 @@
                 "_UNICODE"
             ],
             "windowsSdkVersion": "8.1",
-            "compilerPath": "C:/Software/mingw/bin/gcc.exe",
+            "compilerPath": "D:/Software/mingw/bin/gcc.exe",
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "gcc-x86"
