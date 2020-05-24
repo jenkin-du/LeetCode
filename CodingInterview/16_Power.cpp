@@ -14,6 +14,7 @@ double power(double base, int exponent);
 double powerWithUnsignedExponent(double base, unsigned int exponent);
 //求正数幂2：通过幂指数分解递归求解，加快求解速度
 double powerWithUnsignedExponent2(double base, unsigned int exponent);
+
 int main()
 {
     double result = power(25, -3);
