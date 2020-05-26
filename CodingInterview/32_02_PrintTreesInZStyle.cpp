@@ -56,7 +56,7 @@ void printNodeInTreeHierachyInZStyle(TreeNode *root)
         while (!stack1.empty())
         {
             TreeNode *node = stack1.top();
-            cout << node->value << ",";
+            cout << node->value;
 
             if (node->leftchild != NULL)
             {
@@ -67,13 +67,17 @@ void printNodeInTreeHierachyInZStyle(TreeNode *root)
                 stack2.push(node->rightChild);
             }
             stack1.pop();
+
+            if (!stack1.empty())
+                cout << ",";
         }
-        cout << endl;
+        if (!stack2.empty())
+            cout << endl;
 
         while (!stack2.empty())
         {
             TreeNode *node = stack2.top();
-            cout << node->value << ",";
+            cout << node->value;
 
             if (node->rightChild != NULL)
             {
@@ -84,9 +88,13 @@ void printNodeInTreeHierachyInZStyle(TreeNode *root)
                 stack1.push(node->leftchild);
             }
             stack2.pop();
+            if (!stack2.empty())
+                cout << ",";
         }
-        cout << endl;
+        if (!stack1.empty())
+            cout << endl;
     }
+    cout << endl;
 }
 
 //添加子节点
