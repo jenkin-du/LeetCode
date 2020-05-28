@@ -5,6 +5,8 @@
         "array": "cpp",
         "initializer_list": "cpp",
         "random": "cpp",
-        "limits": "cpp"
+        "limits": "cpp",
+        "stack": "cpp",
+        "queue": "cpp"
     }
 }
