@@ -25,6 +25,9 @@ typedef struct ComplexListNode
     struct ComplexListNode *sibling;
 } ComplexListNode;
 
+//复制复杂链表
+ComplexListNode *cloneComplexListNode(ComplexListNode *phead);
+
 //在原来的链表中克隆添加节点
 void cloneAndAddNode(ComplexListNode *pHead);
 
@@ -32,12 +35,43 @@ void cloneAndAddNode(ComplexListNode *pHead);
 void addNodeSiblingPtr(ComplexListNode *pHead);
 
 //断开原来的链表，形成新的链表
-ComplexListNode *ReconstructList(ComplexListNode *pHead);
+ComplexListNode *reconstructList(ComplexListNode *pHead);
+
+ComplexListNode *addNode(ComplexListNode *pHead, int newVaule);
+
+void printNode(ComplexListNode *pHead);
 
 int main()
 {
+    ComplexListNode *pHead = new ComplexListNode();
+    pHead->value = 1;
+    pHead->next = pHead->sibling = NULL;
 
+    ComplexListNode *node2 = addNode(pHead, 2);
+    ComplexListNode *node3 = addNode(pHead, 3);
+    ComplexListNode *node4 = addNode(pHead, 4);
+    ComplexListNode *node5 = addNode(pHead, 5);
+    ComplexListNode *node6 = addNode(pHead, 6);
+    ComplexListNode *node7 = addNode(pHead, 7);
+
+    node2->sibling = node5;
+    node4->sibling = node7;
+    node6->sibling = node3;
+
+    ComplexListNode *newHead = cloneComplexListNode(pHead);
+
+    printNode(pHead);
+    printNode(newHead);
     return 0;
+}
+
+//复制复杂链表
+ComplexListNode *cloneComplexListNode(ComplexListNode *phead)
+{
+    //分三步完成
+    cloneAndAddNode(phead);
+    addNodeSiblingPtr(phead);
+    return reconstructList(phead);
 }
 
 //在原来的链表中克隆添加节点
@@ -53,10 +87,11 @@ void cloneAndAddNode(ComplexListNode *pHead)
         ComplexListNode *newNode = new ComplexListNode();
         newNode->value = pNode->value;
         newNode->sibling = NULL;
+
         newNode->next = pNode->next;
         pNode->next = newNode;
 
-        pNode = pNode->next;
+        pNode = newNode->next;
     }
 }
 
@@ -70,7 +105,8 @@ void addNodeSiblingPtr(ComplexListNode *pHead)
     ComplexListNode *pNewNode = pHead->next;
     while (pNode != NULL)
     {
-        pNewNode->sibling = pNode->sibling->next;
+        if (pNode->sibling != NULL)
+            pNewNode->sibling = pNode->sibling->next;
 
         pNode = pNewNode->next;
         if (pNode != NULL)
@@ -79,7 +115,7 @@ void addNodeSiblingPtr(ComplexListNode *pHead)
 }
 
 //断开原来的链表，形成新的链表
-ComplexListNode *ReconstructList(ComplexListNode *pHead)
+ComplexListNode *reconstructList(ComplexListNode *pHead)
 {
     if (pHead == NULL)
         return NULL;
@@ -100,5 +136,41 @@ ComplexListNode *ReconstructList(ComplexListNode *pHead)
         }
     }
 
-    return pNewNode;
+    return pNewHead;
+}
+
+ComplexListNode *addNode(ComplexListNode *pHead, int newVaule)
+{
+    ComplexListNode *newNode = new ComplexListNode();
+    newNode->value = newVaule;
+    newNode->next = newNode->sibling = NULL;
+
+    ComplexListNode *pNode = pHead;
+    while (pNode->next != NULL)
+    {
+        pNode = pNode->next;
+    }
+    pNode->next = newNode;
+    return newNode;
+}
+
+void printNode(ComplexListNode *pHead)
+{
+
+    ComplexListNode *pNode = pHead;
+    while (pNode != NULL)
+    {
+        cout << pNode->value;
+        if (pNode->sibling != NULL)
+        {
+            cout << "(" << pNode->sibling->value << ")";
+        }
+
+        pNode = pNode->next;
+        if (pNode != NULL)
+        {
+            cout << ",";
+        }
+    }
+    cout << endl;
 }
