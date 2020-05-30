@@ -14,6 +14,9 @@ typedef struct TreeNode
 //添加子节点
 TreeNode *addChild(TreeNode *root, int value, int direction);
 
+//非递归前序遍历：根-》左-》右
+void traverseNodeInTreePreOrderNonRecrusive(TreeNode *root);
+
 int main()
 {
     TreeNode *tree1 = new TreeNode();
@@ -25,7 +28,37 @@ int main()
     TreeNode *tn1 = addChild(sn1, 4, -1);
     TreeNode *tn2 = addChild(sn1, 7, 1);
 
+    traverseNodeInTreePreOrderNonRecrusive(tree1);
+
     return 0;
+}
+
+//非递归前序遍历：根-》左-》右,要点：用栈，先打印栈顶元素，出栈，先右进，再左进
+void traverseNodeInTreePreOrderNonRecrusive(TreeNode *root)
+{
+    if (root == NULL)
+        return;
+
+    stack<TreeNode *> dataStack;
+    dataStack.push(root);
+
+    while (!dataStack.empty())
+    {
+        TreeNode *topNode = dataStack.top();
+        cout << topNode->value << ",";
+        dataStack.pop();
+
+        if (topNode->rightChild != NULL)
+        {
+            dataStack.push(topNode->rightChild);
+        }
+        if (topNode->leftchild != NULL)
+        {
+            dataStack.push(topNode->leftchild);
+        }
+    }
+
+    cout << endl;
 }
 
 //添加子节点
