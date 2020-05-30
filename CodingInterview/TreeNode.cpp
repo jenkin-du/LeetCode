@@ -28,8 +28,6 @@ int main()
     TreeNode *tn1 = addChild(sn1, 4, -1);
     TreeNode *tn2 = addChild(sn1, 7, 1);
 
-    traverseNodeInTreePreOrderNonRecrusive(tree1);
-
     return 0;
 }
 
