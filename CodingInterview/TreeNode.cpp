@@ -17,6 +17,9 @@ TreeNode *addChild(TreeNode *root, int value, int direction);
 //非递归前序遍历：根-》左-》右
 void traverseNodeInTreePreOrderNonRecrusive(TreeNode *root);
 
+//非递归中序遍历：左-》根-》右
+void traverseNodeInTreeInOrderNonRecrusive(TreeNode *root);
+
 int main()
 {
     TreeNode *tree1 = new TreeNode();
@@ -28,6 +31,7 @@ int main()
     TreeNode *tn1 = addChild(sn1, 4, -1);
     TreeNode *tn2 = addChild(sn1, 7, 1);
 
+    traverseNodeInTreeInOrderNonRecrusive(tree1);
     return 0;
 }
 
@@ -53,6 +57,44 @@ void traverseNodeInTreePreOrderNonRecrusive(TreeNode *root)
         if (topNode->leftchild != NULL)
         {
             dataStack.push(topNode->leftchild);
+        }
+    }
+
+    cout << endl;
+}
+
+//非递归中序遍历：左-》根-》右
+void traverseNodeInTreeInOrderNonRecrusive(TreeNode *root)
+{
+
+    if (root == NULL)
+        return;
+
+    stack<TreeNode *> dataStack;
+    dataStack.push(root);
+
+    bool isAdd = true;
+    while (!dataStack.empty())
+    {
+        TreeNode *topNode = dataStack.top();
+        if (isAdd && topNode->leftchild != NULL)
+        {
+            dataStack.push(topNode->leftchild);
+            isAdd = true;
+            continue;
+        }
+
+        if (isAdd == false || topNode->leftchild == NULL)
+        {
+            cout << topNode->value << ",";
+            dataStack.pop();
+            isAdd = false;
+        }
+
+        if (topNode->rightChild != NULL)
+        {
+            dataStack.push(topNode->rightChild);
+            isAdd = true;
         }
     }
 
