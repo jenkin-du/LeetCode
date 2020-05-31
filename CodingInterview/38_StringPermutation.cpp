@@ -22,6 +22,8 @@ int main()
 
 void printStringPermutation(char *str, char *begin)
 {
+    if (str == NULL || begin == NULL)
+        return;
     if (*begin == '\0')
     {
         cout << str << endl;
