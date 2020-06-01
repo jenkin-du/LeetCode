@@ -9,14 +9,26 @@
 /// 基于这种思想，通过递归可以完成；
 
 #include <iostream>
+#include <vector>
+#include <cstring>
 using namespace std;
 
+//排列
 void printStringPermutation(char *str, char *begin);
+
+//组合
+void printStringCombination(char *str, int length, vector<char> &result);
 
 int main()
 {
     char str[10] = "abc";
-    printStringPermutation(str, str);
+
+    vector<char> result;
+    int length = strlen(str);
+    for (int i = 1; i <= length; i++)
+    {
+        printStringCombination(str, i, result);
+    }
     return 0;
 }
 
@@ -44,4 +56,24 @@ void printStringPermutation(char *str, char *begin)
             *begin = temp;
         }
     }
+}
+
+//组合
+void printStringCombination(char *str, int length, vector<char> &result)
+{
+    if (length == 0)
+    {
+        for (int i = 0; i < result.size(); i++)
+        {
+            cout << result.at(i);
+        }
+        cout << endl;
+        return;
+    }
+    if (*str == '\0')
+        return;
+    result.push_back(*str);
+    printStringCombination(str + 1, length - 1, result);
+    result.pop_back();
+    printStringCombination(str + 1, length, result);
 }
