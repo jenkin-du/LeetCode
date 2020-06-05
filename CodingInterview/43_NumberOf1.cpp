@@ -27,8 +27,8 @@ int number1Between1AndNMethod2(int n);
 
 int main()
 {
-    int numbers1 = number1Between1AndNMethod1(111);
-    int numbers2 = number1Between1AndNMethod2(111);
+    int numbers1 = number1Between1AndNMethod1(11221);
+    int numbers2 = number1Between1AndNMethod2(11221);
     if (numbers1 != -1)
     {
         cout << "The numbers of 1  in 1~n is " << numbers1 << endl;
@@ -66,15 +66,17 @@ int number1Between1AndNMethod2(int n)
     int high = n;
     while (high > 0)
     {
-        int re = n % 10;
+        //高位
         high = n / (weight * 10);
+        //低位
         int low = n % weight;
-        int bit = ((n - low) / (weight * 10)) % 10;
-        if (bit % 10 > 1)
+        //当前位
+        int bit = ((n - low) / weight) % 10;
+        if (bit > 1)
         {
-            numbers += re > 1 ? (high + 1) * weight : high * weight;
+            numbers += bit > 1 ? (high + 1) * weight : high * weight;
         }
-        else if (bit % 10 == 1)
+        else if (bit == 1)
         {
             numbers += high * weight + low + 1;
         }
