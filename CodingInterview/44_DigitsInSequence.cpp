@@ -15,7 +15,7 @@ int numberOfNbitInSequnce(int n);
 
 int main()
 {
-    int number = numberOfNbitInSequnce(12);
+    int number = numberOfNbitInSequnce(0);
     cout << "The number of n bit is " << number << endl;
     return 0;
 }
@@ -28,6 +28,8 @@ int numberOfNbitInSequnce(int n)
     if (n < 0)
         return -1;
 
+    //由于n是从0开始计数的，要计算n位是第几个，要加一
+    n += 1;
     //用bits代表n位的数字处于那个段
     int bits = 1;
     //用number代表n表示的数字
@@ -43,16 +45,16 @@ int numberOfNbitInSequnce(int n)
         else
         {
             //除去前面有几个整数，还剩下几个位
-            int remider = n % bits;
-            //当前段之中当前位前面有多少个数字
-            int leftNumber = n / bits;
-            //当前位前面有多少个数字
-            // int leftNumbers = remider == 0 ? (bits == 1 ? 0 : pow(10, bits - 1)) + leftNumber : (bits == 1 ? 0 : pow(10, bits - 1)) + leftNumber - 1;
-            // //当前位是那个数字
-            // int currentNumbers = remider == 0 ? leftNumbers : leftNumbers + 1;
+            int reminder = n % bits;
+            //当前段之中当前位所在数字的前面有多少个数字
+            int leftNumber = reminder == 0 ? n / bits - 1 : n / bits;
+            //当前位所在数字前面的数字,从1开始计数
+            int leftNumbers = leftNumber + (bits == 1 ? -1 : pow(10, bits - 1) - 1);
+            //当前位是那个数字
+            int currentNumber = leftNumbers + 1;
 
             //当前位的数字
-            // number = (currentNumbers / (pow(10, (bits - remider - 1)))) % 10;
+            number = reminder == 0 ? currentNumber % 10 : (currentNumber / (pow(10, (bits - reminder)))) % 10;
         }
         bits++;
     }
