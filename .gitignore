@@ -2,4 +2,4 @@
 Debug/
 **/*.exe
 bin
-.class
+**/*.class
