@@ -1,3 +1,5 @@
+package CodingInterview;
+
 import java.util.ArrayList;
 
 /**
@@ -5,7 +7,7 @@ import java.util.ArrayList;
  * 题目：输入一个正整数数组，把数组里所有数组拼接起来排成一个数，打印能拼接出的所有数字中最小的一个
  * </pre>
  */
-class SortArrayForMinNumber {
+class SortArrayForMinNumber_45 {
 
     public String PrintMinNumber(int[] numbers) {
 

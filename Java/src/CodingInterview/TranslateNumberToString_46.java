@@ -1,3 +1,5 @@
+package CodingInterview;
+
 import java.util.Scanner;
 
 /**
