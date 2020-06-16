@@ -26,5 +26,30 @@ class ReserveStringOrder {
             stacks.pop();
         }
         System.out.print("\n");
+
+        System.out.print(reverseWords("  hello world!  "));
+        System.out.println("*");
+    }
+
+    public static String reverseWords(String s) {
+
+        Stack<String> stacks = new Stack<>();
+        String[] arr = s.split("\\s+");
+        for (String str : arr) {
+            if (!str.equals("")) {
+                stacks.push(str);
+            }
+        }
+        StringBuilder result = new StringBuilder();
+        while (!stacks.empty()) {
+            String out = stacks.peek();
+            stacks.pop();
+            result.append(out);
+
+            if (!stacks.empty()) {
+                result.append(" ");
+            }
+        }
+        return result.toString();
     }
 }
