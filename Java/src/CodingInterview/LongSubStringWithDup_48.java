@@ -13,7 +13,7 @@ package CodingInterview;
 class LongSubStringWithDup_48 {
 
     public static void main(String[] args) {
-        String str = "a";
+        String str = "aabaab!bb";
 
         System.out.println(maxSubString(str));
     }
@@ -24,30 +24,33 @@ class LongSubStringWithDup_48 {
             return 0;
         }
 
+        if (str.trim().equals("")){
+            return 1;
+        }
+
         char[] cArr = str.toCharArray();
         int maxLength = 1;
         int curLength = 1;
         int start = 0;
-        boolean hasSame;
+
+        int[] cIndex = new int[256];
+        for (int i = 0; i < 256; i++) {
+            cIndex[i] = -1;
+        }
+        cIndex[cArr[0] - ' '] = 0;
 
         for (int i = 1; i < cArr.length; i++) {
-
-            hasSame = false;
-            for (int j = start; j < i; j++) {
-                if (cArr[j] == cArr[i]) {
-                    start = i + 1;
-                    hasSame = true;
-                    break;
-                }
-            }
-            if (hasSame) {
+            int index = cIndex[cArr[i] - ' '];
+            if (index == -1 || i - index > curLength) {
+                curLength++;
+            } else {
                 if (curLength > maxLength) {
                     maxLength = curLength;
                 }
+                start = index + 1;
                 curLength = i - start + 1;
-            } else {
-                curLength++;
             }
+            cIndex[cArr[i] - ' '] = i;
         }
         if (curLength > maxLength) {
             maxLength = curLength;
