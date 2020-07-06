@@ -34,7 +34,7 @@ int main()
     TreeNode *tn1 = addChild(sn1, 4, -1);
     TreeNode *tn2 = addChild(sn1, 7, 1);
 
-    traverseNodeInTreePostOrderNonRecrusive(tree1);
+    traverseNodeInTreeInOrderNonRecrusive(tree1);
     return 0;
 }
 
@@ -74,30 +74,22 @@ void traverseNodeInTreeInOrderNonRecrusive(TreeNode *root)
         return;
 
     stack<TreeNode *> dataStack;
-    dataStack.push(root);
+    TreeNode* node=root;
 
-    bool isAdd = true;
-    while (!dataStack.empty())
+    while (!dataStack.empty() || node != NULL)
     {
-        TreeNode *topNode = dataStack.top();
-        if (isAdd && topNode->leftchild != NULL)
+        while (node != NULL)
         {
-            dataStack.push(topNode->leftchild);
-            isAdd = true;
-            continue;
+            dataStack.push(node);
+            node = node->leftchild;
         }
-
-        if (isAdd == false || topNode->leftchild == NULL)
+        if (!dataStack.empty())
         {
-            cout << topNode->value << ",";
+            node = dataStack.top();
+            cout << node->value << ",";
             dataStack.pop();
-            isAdd = false;
-        }
 
-        if (topNode->rightChild != NULL)
-        {
-            dataStack.push(topNode->rightChild);
-            isAdd = true;
+            node = node->rightChild;
         }
     }
 

@@ -18,4 +18,13 @@ public class ListNode {
     public ListNode(int val) {
         this.val = val;
     }
+
+    public static void printListNode(ListNode root) {
+        if (root != null) {
+            System.out.print(root.val + ",");
+            printListNode(root.next);
+        } else {
+            System.out.println();
+        }
+    }
 }
