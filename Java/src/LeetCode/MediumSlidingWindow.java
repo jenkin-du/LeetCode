@@ -1,9 +1,6 @@
 package LeetCode;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * <pre>
@@ -22,6 +19,8 @@ class MediumSlidingWindow {
 
         int[] nums = {1, 3, -1, -3, 5, 3, 6, 7};
         int k = 3;
+//        int[] nums = {1, 3, -1, 3};
+//        int k = 3;
         double[] res = medianSlidingWindow(nums, k);
 
         for (double re : res) {
@@ -32,32 +31,31 @@ class MediumSlidingWindow {
 
     public static double[] medianSlidingWindow(int[] nums, int k) {
 
-        // if(k<=1){
-        //     return new double[1];
-        // }
-
         ArrayList<Double> list = new ArrayList<>();
-        PriorityQueue<MyInteger> queue = new PriorityQueue<>(Comparator.comparingInt(v -> v.value));
-        PriorityQueue<MyInteger> aux = new PriorityQueue<>(Comparator.comparingInt(v -> v.value));
+        PriorityQueue<MyInteger> queue = new PriorityQueue<>(Comparator.comparingInt(o -> o.value));
+        PriorityQueue<MyInteger> aux = new PriorityQueue<>(Comparator.comparingInt(o -> o.value));
+
+        MyInteger[] myNums = new MyInteger[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            myNums[i] = new MyInteger(nums[i]);
+        }
+
         HashSet<MyInteger> set = new HashSet<>();
         int temp = k - 1;
         while (temp >= 0) {
-            MyInteger integer = new MyInteger(nums[temp--]);
-            queue.offer(integer);
+            queue.offer(myNums[temp--]);
         }
         int end = k;
         int start = 0;
         int[] arr = new int[k];
-        while (end < nums.length) {
+        while (end <= nums.length) {
             int j = 0;
             while (queue.size() != 0) {
                 MyInteger integer = queue.poll();
                 if (!set.contains(integer)) {
                     arr[j++] = integer.value;
                 }
-                if (integer != null) {
-                    aux.offer(integer);
-                }
+                aux.offer(integer);
             }
 
             int middle = k / 2;
@@ -70,13 +68,14 @@ class MediumSlidingWindow {
             }
 
             queue = aux;
-            aux = new PriorityQueue<>();
+            aux = new PriorityQueue<>(Comparator.comparingInt(o -> o.value));
 
-            int addNum = nums[end];
-            queue.offer(new MyInteger(addNum));
+            if (end >= nums.length) {
+                break;
+            }
 
-            int deleteNum = nums[start];
-            set.add(new MyInteger(deleteNum));
+            queue.offer(myNums[end]);
+            set.add(myNums[start]);
 
             start++;
             end++;
