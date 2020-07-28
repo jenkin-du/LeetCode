@@ -24,7 +24,6 @@ public class SingletonPattern {
                 if (singleton == null) {
                     singleton = new SingletonPattern();
                 }
-
             }
         }
         return singleton;
