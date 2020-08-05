@@ -5,10 +5,10 @@ package CommonAgrithm;
  *     author : jenkin
  *     e-mail : jekin-du@foxmail.com
  *     time   : 2020/06/11
- *     标题   : 常用排序算法
+ *     标题   : 归并排序
  * </pre>
  */
-class Sort {
+class MergeSort {
 
     public static void main(String[] args) {
 
