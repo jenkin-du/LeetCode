@@ -1,3 +1,5 @@
+package NewCode.bytedance;
+
 import java.util.Scanner;
 
 /**
@@ -10,7 +12,7 @@ import java.util.Scanner;
  *     思路   :
  * </pre>
  */
-class TestObject {
+class Main20200904_2 {
 
 
     public static void main(String[] args) {
