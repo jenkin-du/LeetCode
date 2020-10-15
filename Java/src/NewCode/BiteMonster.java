@@ -1,6 +1,7 @@
 package NewCode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
 
@@ -29,6 +30,10 @@ public class BiteMonster {
             monster[i] = scanner.nextInt();
         }
 
+        if(N>T){
+            System.out.println(-1);
+        }
+
         ArrayList<Integer> arrayList = new ArrayList<>();
         for (int num : monster) {
             arrayList.add(num);
@@ -40,34 +45,32 @@ public class BiteMonster {
         int n, m, t;
 
         int X = 0;
-        while (true) {
+        int[] nums = new int[N];
+        do {
             n = N;
             m = M;
             t = T;
             int k = 0;
-            X++;
-            int[] nums = new int[N];
-            if (N >= 0) System.arraycopy(monster, 0, nums, 0, N);
 
+            System.arraycopy(monster, 0, nums, 0, N);
+            X++;
             for (int i = 0; i < t; i++) {
-                if (m > 0 && k < n) {
+                if (m > 0 && k < n && nums[k] >= X) {
                     nums[k] -= X;
-                    if (nums[k] < 0) {
+                    if (nums[k] <= 0) {
                         k++;
                     }
                     m--;
                 } else {
-                    nums[k] -= 1;
-                    if (nums[k] < 0) {
-                        k++;
+                    if (k < n) {
+                        nums[k] -= 1;
+                        if (nums[k] <= 0) {
+                            k++;
+                        }
                     }
                 }
             }
-
-            if (nums[N - 1] <= 0) {
-                break;
-            }
-        }
+        } while (nums[N - 1] > 0);
         System.out.println(X);
 
     }
